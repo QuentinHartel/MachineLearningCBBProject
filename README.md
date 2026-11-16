@@ -42,28 +42,6 @@ repo/
     xgboost_features.json
 ```
 
-**Data availability:** Commit the two test CSVs to the repository (if their license and repository size permit). The CSVs must be the same versions used for the reported evaluation. If data cannot be committed, provide an authenticated fetch script and document the precise data snapshot; this evaluation script intentionally does not download data. Never commit an API key. If the CSVs are not present, the command fails with a clear missing-file message.
-
-**Model availability:** Commit the four frozen model artifacts above, or supply a documented way to retrieve the exact artifacts. The model files are required for the command to reproduce the published result; retraining is a different workflow. Only load `.joblib` artifacts from trusted sources.
-
-## Installation
-
-Use the same Python and package versions as the environment that created the `.joblib` models. Capture them with:
-
-```bash
-python3 -m pip freeze > requirements.txt
-```
-
-Commit that generated `requirements.txt`. In a fresh environment:
-
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-python3 -m pip install -r requirements.txt
-```
-
-On Windows, activate with `.venv\\Scripts\\activate` instead. The evaluation uses pandas, NumPy, scikit-learn, XGBoost, and joblib. `requirements.txt` is a placeholder until generated from the working environment.
-
 ## Reproducibility and data leakage
 
 - Fixed seed: **42** for the bootstrap and any random operations in the evaluation script. The saved models were trained separately with their recorded training settings.
